@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: personal-media-archive
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: AUTH_USERNAME
+        value: admin
+      - key: AUTH_PASSWORD
+        sync: false
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: DATA_DIR
+        value: /data
+      - key: COOKIE_SECURE
+        value: "1"
+      - key: PROXY_HEADERS
+        value: "1"
+      - key: RETENTION_DAYS
+        value: "1"
+      - key: MAX_CONCURRENT
+        value: "2"
+      - key: MAX_FILESIZE_MB
+        value: "2048"
+      - key: MAX_DURATION_SEC
+        value: "0"
+      - key: SESSION_DAYS
+        value: "14"
